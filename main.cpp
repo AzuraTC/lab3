@@ -16,17 +16,17 @@ int findDifferentArray(int *A, int N)
 {
     int i,P;
     P=0;
-    bitset<20> array; //chage 20 to 100 000
+    bitset<100000> array; //chage 20 to 100 000
 
     for (i=0;i<N;i++)
     {
        if (array[A[i]]==0)
        {
-      array.set(A[i]);
-          P=i;
+           array.set(A[i]);
+           P=i;
        }
     }
-    cout<<"array: "<<array<<endl;
+//    cout<<"array: "<<array<<endl;
     P=P+1;
     return P;
 }
@@ -34,7 +34,8 @@ int findDifferentArray(int *A, int N)
 
 int main()
 {
-    int i,N, P;
+    int i,N;
+    int P=0;
     cout<<"Enter length of array: "<<endl;
     cin>>N;
     cout<<"N="<<N<<endl;
@@ -45,24 +46,25 @@ int main()
 
     for(i=0;i<N;i++)
     {
-        A[i]=rand() % 20; //change 20 to 100000
+        A[i]=rand() % 100000; //change 20 to 100000
     }
 
     cout<<"An array was generated! "<<endl;
 
-    cout<<"[";
+//    cout<<"[";
 
-    for(i=0;i<N;i++)
-    {
-        if (i==N-1)
-        {
-            cout<<A[i];
-            break;
-        }
-        cout<<A[i]<<", ";
-    }
+//    for(i=0;i<N;i++)
+//    {
+//        if (i==N-1)
+//        {
+//            cout<<A[i];
+//            break;
+//        }
+//        cout<<A[i]<<", ";
+//    }
 
-    cout<<"]"<<endl;
+//    cout<<"]"<<endl;
+
     P=findDifferentArray(A,N);
     cout<<"answer:  P = "<<P<<endl;
 
