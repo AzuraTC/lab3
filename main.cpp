@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <map>
+#include <bitset>
 
 using namespace std;
 
@@ -14,32 +14,27 @@ int findDifferentArray(int *A, int N);
 
 int findDifferentArray(int *A, int N)
 {
-    map <int,int> unicNum;
-    unicNum[1]=2;
-    unicNum[3]=5;
-    unicNum[6]=6;
-
- //массив размером N для уникальных элементов
-    int i,j,R,P; //счётчик массива; кол-во уникальных элементов; индекс последнего уникального элемента
+    int i,P;
     P=0;
+    bitset<20> array; //chage 20 to 100 000
 
-
- cout << "unicNum has: " << endl;
-
- for (map<int,int>::iterator it = unicNum.begin(); it != unicNum.end(); ++it)
- {
-     cout << it->first << " ... " << it->second << endl;
- }
-
- return P;
+    for (i=0;i<N;i++)
+    {
+       if (array[A[i]]==0)
+       {
+      array.set(A[i]);
+          P=i;
+       }
+    }
+    cout<<"array: "<<array<<endl;
+    P=P+1;
+    return P;
 }
-
-
 
 
 int main()
 {
-    int i,N;
+    int i,N, P;
     cout<<"Enter length of array: "<<endl;
     cin>>N;
     cout<<"N="<<N<<endl;
@@ -50,7 +45,7 @@ int main()
 
     for(i=0;i<N;i++)
     {
-        A[i]=rand() % 200 - 100;
+        A[i]=rand() % 20; //change 20 to 100000
     }
 
     cout<<"An array was generated! "<<endl;
@@ -68,12 +63,16 @@ int main()
     }
 
     cout<<"]"<<endl;
-    findDifferentArray(A,N);
+    P=findDifferentArray(A,N);
+    cout<<"answer:  P = "<<P<<endl;
 
-    cout <<"cleaning after ourselves"<<endl;
-    cout <<"Deleting array A"<<endl;
+    cout <<"................................."<<endl;
+    cout <<"................................."<<endl;
+    cout<<"Cleaning after ourselves..."<<endl;
     delete [] A;
     cout <<"Done!"<<endl;
+    cout <<"................................."<<endl;
+    cout <<"................................."<<endl;
 
     return 0;
 }
